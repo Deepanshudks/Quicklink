@@ -18,6 +18,12 @@ app.use(express.json());
 // Serve static files (uploaded files)
 // app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+app.get("/",(req,res)=>{
+  res.json({
+    message : "Welcome to quicklink"
+  })
+})
+
 // Routes
 app.use('/api/files', fileRoutes);
 app.use('/api/auth', authRoutes);

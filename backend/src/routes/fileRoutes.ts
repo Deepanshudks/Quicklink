@@ -100,7 +100,7 @@ const router = Router();
 
 const multerMiddleware= (req: any,res:any,next:any)=>{
   upload.single('file')(req, res, function (err) {
-
+    console.log("HIII")
     if (err) {
       return res.status(400).json({ error: "File upload failed", details: err.message });
     }

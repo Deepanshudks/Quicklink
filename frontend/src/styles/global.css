@@ -1,0 +1,16 @@
+/* Set default styling for the landing page */
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+@media screen and (max-width: 640px) {
+  .bg-gradient-to-r {
+    background-position: center;
+    background-size: cover;
+  }
+}

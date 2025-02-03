@@ -16,7 +16,7 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         
       - name: Build & Push Docker Image
-        run: docker build --build-arg VITE_API_URL=${{ VITE_API_URL }} -t deepanshudks/quicklinkreact  .
+        run: docker build --build-arg VITE_API_URL=${{ secrets.VITE_API_URL }} -t deepanshudks/quicklinkreact  .
 
       - name: Publish Image to docker hub
         run: docker push deepanshudks/quicklinkreact:latest

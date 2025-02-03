@@ -60,4 +60,4 @@ jobs:
             sudo docker run -d --name quicklink \
               --env-file ~/quicklink.env \
               --restart always \
-              -p 5000:5000 deepanshudks/quicklink:latest
+              -p 3000:3000 deepanshudks/quicklink:latest

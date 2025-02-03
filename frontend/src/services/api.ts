@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 
 export const API_URL = import.meta.env.VITE_API_URL
 
+
 // Get all files
 export const getUserFiles = async () => {
   try {

@@ -290,7 +290,7 @@ const Dashboard = () => {
                           <Download className="h-4 w-4 text-teal-500" />
                         </a> */}
                         <button onClick={() => {
-                          navigate("/QrCode", {
+                          navigate("/qrcode", {
                             state: { fileURL: file.fileURL }
                           })
                         }} className="p-2 hover:bg-teal-50 rounded-full">

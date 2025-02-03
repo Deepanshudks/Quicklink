@@ -3,8 +3,7 @@ import axios from 'axios';
 import QrCode from '../components/QrCode';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const API_URL = 'http://localhost:5000/api'; // Adjust API URL as needed
-
+const API_URL = import.meta.env.VITE_API_URL; // Adjust API URL as needed
 
 
 const QrCodePage: React.FC = () => {

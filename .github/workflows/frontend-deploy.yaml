@@ -16,17 +16,11 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         
       - name: Build & Push Docker Image
-        uses: docker/build-push-action@v2
-        with:
-          contect: .
-          file: ./frontend/Dockerfile
-          push: true
-          build-args: VITE_API_URL=${{ secrets.VITE_API_URL }}
-          tags: deepanshudks/quicklinkreact:latest
+        run: docker build -t deepanshudks/quicklinkreact --build-arg VITE_API_URL=${{ VITE_API_URL }} .
 
       - name: Publish Image to docker hub
         run: docker push deepanshudks/quicklinkreact:latest
-        
+
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest

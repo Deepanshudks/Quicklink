@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FileText,ArrowLeft, Image, UploadCloud } from "lucide-react";
 import FileUpload from "../components/FileUpload";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const FileUploadPage: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);

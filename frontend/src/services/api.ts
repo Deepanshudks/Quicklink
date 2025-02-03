@@ -1,7 +1,7 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-export const API_URL = import.meta.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+export const API_URL = import.meta.env.VITE_API_URL
 
 // Get all files
 export const getUserFiles = async () => {
@@ -138,6 +138,8 @@ export const uploadFile = async (file: File) => {
 // User login
 export const loginUser = async (username: string, password: string) => {
   // Validate if username and password are not empty
+  console.log(import.meta.env.VITE_API_URL)
+  console.log(API_URL)
   if (!username || !password) {
     // console.log("Username and password are required.");
     return;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import QrCode from '../components/QrCode';
-import { GetQRCode } from '../services/api';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const API_URL = 'http://localhost:5000/api'; // Adjust API URL as needed
@@ -45,6 +44,7 @@ const QrCodePage: React.FC = () => {
     }
   };
 
+  // @ts-ignore 
   const handleclick = async () => {
     setLoading(true);
     setError(null);

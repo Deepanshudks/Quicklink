@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { CodeSquare, FileText, UploadCloud, XCircle } from 'lucide-react';
+import {  FileText, UploadCloud, XCircle } from 'lucide-react';
 import { uploadFile } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 

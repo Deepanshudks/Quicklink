@@ -1,11 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect,  } from "react";
 import {
   Files,
-  Upload,
-  Share2,
-  Search,
-  Download,
-  Link as LinkIcon,
   FileText,
   Image,
   Video,
@@ -13,10 +8,9 @@ import {
   File,
   QrCode,
 } from "lucide-react";
-import { API_URL, getUserFiles, RenameFile } from "../services/api";
-import { Link, useNavigate } from "react-router-dom";
+import { getUserFiles, RenameFile } from "../services/api";
+import { useNavigate } from "react-router-dom";
 import FileActions from "./FileActions";
-import { FileContent } from "./FileContent";
 import { Navbar } from "./Navbar";
 
 export interface FileData {
@@ -50,9 +44,9 @@ const Dashboard = () => {
     }
   };
 
-  const handleQRClick = async () => {
+  // const handleQRClick = async () => {
 
-  }
+  // }
 
   useEffect(() => {
     fetchFiles();

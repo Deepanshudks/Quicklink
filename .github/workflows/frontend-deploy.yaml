@@ -1,0 +1,50 @@
+name: "Build and deploy frontend"
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-actions@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+        
+      - name: Build & Push Docker Image
+        uses: docker/build-push-actions@v2
+        with:
+          contect: .
+          file: ./frontend/Dockerfile
+          push: true
+          tags: deepanshudks/quicklinkreact:latest
+
+      - name: Verify Pushed Image
+        run: docker pull deepanshudks/quicklinkreact:latest
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            sudo docker pull deepanshudks/quicklinkreact:latest
+            
+            sudo docker stop quicklinkreact || true
+            sudo docker rm quicklinkreact || true
+            
+            sudo docker run -d --name quicklinkreact \
+              -e VITE_API_URL=${{ VITE_API_URL }} \
+              --restart always \
+              -p 3000:3000 deepanshudks/quicklinkreact:latest

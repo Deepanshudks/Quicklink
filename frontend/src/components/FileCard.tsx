@@ -6,7 +6,7 @@ interface FileCardProps {
   fileUrl: string;
   onDownload: () => void;
 }
-
+// @ts-ignore 
 const FileCard: React.FC<FileCardProps> = ({ fileName, fileUrl, onDownload }) => {
   return (
     <motion.div

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MoreVertical } from "lucide-react";
-import { deleteFile, getUserFiles, RenameFile } from "../services/api";
+import { deleteFile } from "../services/api";
 
 // @ts-ignore 
 const FileActions: React.FC<FileActionsProps> = ({setIsModalOpen, id, setComponentId }) => {

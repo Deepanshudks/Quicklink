@@ -15,7 +15,9 @@ RUN npm run build
 
 # Serve with Nginx 
 
-FROM nginx
+FROM nginx:1.23-alpine
+
+RUN apk update && apk add --no-cache nginx
 
 WORKDIR /usr/share/nginx/html
 

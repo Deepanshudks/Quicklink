@@ -32,9 +32,9 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            sudo docker pull deepanshudks/quicklinkreact:latest
             
             sudo docker stop quicklinkreact || true
             sudo docker rm quicklinkreact || true
+            sudo docker pull deepanshudks/quicklinkreact:latest
             
             sudo docker run -d --name quicklinkreact -p 3000:80 deepanshudks/quicklinkreact:latest

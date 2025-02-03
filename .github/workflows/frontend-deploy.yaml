@@ -44,7 +44,4 @@ jobs:
             sudo docker stop quicklinkreact || true
             sudo docker rm quicklinkreact || true
             
-            sudo docker run -d --name quicklinkreact \
-              -e VITE_API_URL=${{ VITE_API_URL }} \
-              --restart always \
-              -p 3000:3000 deepanshudks/quicklinkreact:latest
+            sudo docker run -d --name quicklinkreact -p 3000:80 deepanshudks/quicklinkreact:latest

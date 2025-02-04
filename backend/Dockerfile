@@ -8,13 +8,13 @@ RUN apt-get update && \
 
 WORKDIR /usr/src/app
 
-COPY ./backend/package.json ./backend/package-lock.json ./backend/tsconfig.json ./
+COPY package.json package-lock.json tsconfig.json ./
 
 RUN npm install
 
-COPY backend ./backend
+COPY backend .
 
-WORKDIR /usr/src/app/backend
+WORKDIR /usr/src/app
 
 RUN npm rebuild bcrypt --build-from-source
 

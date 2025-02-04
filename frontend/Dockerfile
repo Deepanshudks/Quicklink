@@ -15,7 +15,7 @@ RUN npm run build
 
 # Serve with Nginx 
 
-FROM nginx:1.23-alpine
+FROM nginx
 
 # RUN apk update && apk add --no-cache nginx
 

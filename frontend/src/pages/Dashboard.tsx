@@ -256,9 +256,7 @@ const Dashboard = () => {
                   {filteredFiles.map((file) => (
                     <div key={file.id} className="flex items-center justify-between p-4 hover:bg-slate-50">
                       <div className="flex items-center space-x-4">
-                        <div onClick={()=>{
-                          navigate(`${file.fileURL}`)
-                        }} className="text-teal-500">
+                        <div className="text-teal-500">
                           {file.fileName ? (
                             // Check if the file type is an image
                             file.fileType.startsWith("image/") ? (

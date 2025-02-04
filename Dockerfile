@@ -6,15 +6,13 @@ RUN apt-get update && \
     libssl-dev && \
     rm -rf /var/lib/apt/lists/*
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/backend
 
-COPY package.json package-lock.json tsconfig.json ./
+COPY ./backend/package.json ./backend/package-lock.json ./backend/tsconfig.json ./backend/
 
 RUN npm install
 
-COPY backend .
-
-WORKDIR /usr/src/app
+COPY backend ./backend
 
 RUN npm rebuild bcrypt --build-from-source
 

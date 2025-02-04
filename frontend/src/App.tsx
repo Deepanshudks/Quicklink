@@ -6,7 +6,7 @@ import FilePage from './pages/FilePage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import LandingPage from './pages/LandingPage';
-import Dashboard from './components/Dashboard';
+import Dashboard from './pages/Dashboard';
 import FileUploadPage from './pages/FileUploadPage';
 import { Toaster } from 'react-hot-toast';
 import QrCodePage from './pages/QrCodePage';

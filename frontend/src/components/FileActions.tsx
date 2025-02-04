@@ -3,9 +3,8 @@ import { MoreVertical } from "lucide-react";
 import { deleteFile } from "../services/api";
 
 // @ts-ignore 
-const FileActions: React.FC<FileActionsProps> = ({setIsModalOpen, id, setComponentId }) => {
+const FileActions: React.FC<FileActionsProps> = ({setIsModalOpen,fetchFiles, id, setComponentId }) => {
   const [isOpen, setIsOpen] = useState(false);
-
 
   const handleRenameClick = () => {
     setComponentId(id)
@@ -43,7 +42,9 @@ const FileActions: React.FC<FileActionsProps> = ({setIsModalOpen, id, setCompone
             onClick={async () => {
               console.log("Delete clicked");
               await deleteFile(id)
-              setIsOpen(false); // Close the menu after selection
+              
+              await fetchFiles()
+              setIsOpen(false);
             }}
           >
             Delete

@@ -10,8 +10,8 @@ import {
 } from "lucide-react";
 import { getUserFiles, RenameFile } from "../services/api";
 import { useNavigate } from "react-router-dom";
-import FileActions from "./FileActions";
-import { Navbar } from "./Navbar";
+import FileActions from "../components/FileActions";
+import { Navbar } from "../components/Navbar";
 
 
 export interface FileData {
@@ -297,7 +297,7 @@ const Dashboard = () => {
                           <QrCode className="h-4 w-4 text-teal-500" />
                         </button>
                         {/* @ts-ignore  */}
-                        <FileActions setIsModalOpen={setIsModalOpen} setComponentId={setComponentId} id={file.id} />
+                        <FileActions fetchFiles={fetchFiles} setIsModalOpen={setIsModalOpen} setComponentId={setComponentId} id={file.id} />
                       </div>
                     </div>
                   ))}

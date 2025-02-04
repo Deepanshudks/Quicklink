@@ -35,7 +35,7 @@ export const deleteFile = async (id: number)=>{
     // console.log("done")
     if(response){
       toast.success("deleted successfully")
-      
+    
     }
   }catch(e : any){
     toast.error("Error occured")

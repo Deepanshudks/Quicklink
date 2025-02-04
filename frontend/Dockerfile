@@ -17,7 +17,7 @@ RUN npm run build
 
 FROM nginx:1.23-alpine
 
-RUN apk update && apk add --no-cache nginx
+# RUN apk update && apk add --no-cache nginx
 
 WORKDIR /usr/share/nginx/html
 

@@ -3,7 +3,6 @@ import { Loader2 } from "lucide-react";
 import { Worker, Viewer } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import Mammoth from "mammoth";
-import { useLocation } from "react-router-dom";
 
 interface FileViewerProp  {
   loading:boolean,
@@ -12,7 +11,6 @@ interface FileViewerProp  {
 }
 
 const FileViewer = ({loading,fileUrl,fileType}:FileViewerProp) => {
-  const location = useLocation(); // Get the current location object
   const [docContent, setDocContent] = useState("");
 
   // Detect File URL from location.pathname or location.search

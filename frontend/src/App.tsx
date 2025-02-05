@@ -9,7 +9,6 @@ import Dashboard from './pages/Dashboard';
 import FileUploadPage from './pages/FileUploadPage';
 import { Toaster } from 'react-hot-toast';
 import QrCodePage from './pages/QrCodePage';
-import FileViewer from './components/FileViewer';
 import ViewFile from './pages/ViewFile';
 
 const App: React.FC = () => {

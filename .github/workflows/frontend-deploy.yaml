@@ -18,7 +18,7 @@ jobs:
       - name: Build & Push Docker Image
         run: |
           cd ./frontend
-          docker build --no-cache --build-arg VITE_API_URL=${{ secrets.VITE_API_URL }} -t deepanshudks/quicklinkreact .
+          docker build --build-arg VITE_API_URL=${{ secrets.VITE_API_URL }} -t deepanshudks/quicklinkreact .
       - name: Publish Image to docker hub
         run: docker push deepanshudks/quicklinkreact:latest
 

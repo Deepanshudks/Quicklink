@@ -139,8 +139,8 @@ export const uploadFile = async (file: File) => {
 // User login
 export const loginUser = async (username: string, password: string) => {
   // Validate if username and password are not empty
-  console.log(import.meta.env.VITE_API_URL)
-  console.log(API_URL)
+  // console.log(import.meta.env.VITE_API_URL)
+  // console.log(API_URL)
   if (!username || !password) {
     // console.log("Username and password are required.");
     return;
@@ -152,12 +152,12 @@ export const loginUser = async (username: string, password: string) => {
     if (response.data?.token) {
       localStorage.setItem("authToken", "Bearer " + response.data.token);
       toast.success("Login successful")
-      return response.data;
+      return response;
     } else {
-      // console.log("Login failed. No token received.");
+      console.log("Login failed. No token received.");
     }
   } catch (e) {
-    // console.log("An error occurred while logging in: ", e);
+    console.log("An error occurred while logging in: ", e);
   }
 };
 
@@ -166,8 +166,8 @@ export const signUpUser = async (username: string,email: string, password: strin
   try{
     const response = await axios.post(`${API_URL}/auth/signup`, {username, email, password });
     localStorage.setItem("authToken","Bearer " + response.data.token)
-    return response.data;
+    return response
   }catch(e){
-    // console.log(e)
+    console.log(e)
   }
 };

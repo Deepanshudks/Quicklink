@@ -66,7 +66,7 @@ export const login = async (req: Request, res: Response) => {
     });
     console.log(token)
 
-    res.json({ token });
+    res.status(200).json({ token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Login failed.' });

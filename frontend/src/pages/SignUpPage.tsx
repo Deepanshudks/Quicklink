@@ -19,14 +19,15 @@ const SignUpPage: React.FC = () => {
 
     try {
      const res =  await signUpUser(username, email, password);
-      if(res){
+     console.log(res)
+      if(res?.status == 201){
         navigate('/dashboard');
       }
       else{
-        setError('Failed to sign up. Please try again.');
+        setError(res?.data.message || 'Failed to sign up. Please try again.');
       setIsLoading(false);
       }
-    } catch (error) {
+    } catch (err) {
       setError('Failed to sign up. Please try again.');
       setIsLoading(false);
     }

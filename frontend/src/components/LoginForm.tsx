@@ -33,12 +33,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
       setIsloading(true)
 
       const res = await loginUser(value.username, value.password)
-      if (res) {
+      if (res?.status == 200) {
         
         onLoginSuccess()
         setIsloading(false)
       } else {
-        toast.error("Failed to login")
+        toast.error(res?.data.message || "Failed to login")
         setIsloading(false)
       }
     }

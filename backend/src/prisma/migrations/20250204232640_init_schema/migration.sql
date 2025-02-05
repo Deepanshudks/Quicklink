@@ -15,6 +15,7 @@ CREATE TABLE "File" (
     "fileType" TEXT NOT NULL,
     "fileSize" INTEGER NOT NULL,
     "fileURL" TEXT NOT NULL,
+    "qrcode" TEXT,
     "ownerId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 

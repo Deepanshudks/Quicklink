@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { FileProvider } from './contexts/FileContext';
-import FilePage from './pages/FilePage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import LandingPage from './pages/LandingPage';
@@ -10,6 +9,8 @@ import Dashboard from './pages/Dashboard';
 import FileUploadPage from './pages/FileUploadPage';
 import { Toaster } from 'react-hot-toast';
 import QrCodePage from './pages/QrCodePage';
+import FileViewer from './components/FileViewer';
+import ViewFile from './pages/ViewFile';
 
 const App: React.FC = () => {
   return (
@@ -19,7 +20,8 @@ const App: React.FC = () => {
         <Router>
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/file/:fileId" element={<FilePage />} />
+            <Route path="/file" element={<ViewFile/>} />
+            {/* <Route path="/file/:fileId" element={<FilePage />} /> */}
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/upload" element={<FileUploadPage />} />

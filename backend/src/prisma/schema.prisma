@@ -27,6 +27,7 @@ model File {
   fileType  String
   fileSize  Int
   fileURL   String
+  qrcode    String?
   ownerId   Int
   owner     User     @relation(fields: [ownerId], references: [id])
   createdAt DateTime @default(now())

@@ -4,7 +4,10 @@ import fs from 'fs';
 import prisma from '../model/prismaClient';
 import  QRCode from 'qrcode';
 
-// Service for uploading files
+// const FILEPATH = "http://localhost:5173/file"
+
+// Service for uploading file
+
 export const saveFileToDatabase = async (req: Request) => {
   const { file } = req;
   if (!file) {
@@ -64,7 +67,7 @@ export const deleteFileById = async (fileId: number, userId: number) => {
 };
 
 export const GenerateQr = async (req: Request, res: Response): Promise<any> => {
-  const { fileUrl } = req.query;
+  const { fileUrl, FileId } = req.query;
   console.log("************************")
   console.log(fileUrl);
   console.log("************************") 
@@ -78,9 +81,13 @@ export const GenerateQr = async (req: Request, res: Response): Promise<any> => {
 
   try {
     // Generate the QR Code for the given file URL (assuming fileUrl is the path or URL of the file)
-    const qrCode = await QRCode.toDataURL(fileUrl);
 
-    console.log("QR Code generated:", qrCode);
+    // const EncodedURL = encodeURIComponent(`?url=${fileUrl}`) 
+    // console.log(`${APP_URL}/${EncodedURL}`)
+    const UrlPath = "?url=" + fileUrl
+    const qrCode = await QRCode.toDataURL(`${process.env.FILEPATH}${UrlPath}`);
+
+    // console.log("QR Code generated:", qrCode);
 
     // Return the QR code as a response
     // @ts-ignore 

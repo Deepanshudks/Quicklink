@@ -11,12 +11,12 @@ const QrCodePage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const location = useLocation()
-  const { fileURL } = location.state || {};
+  const { fileURL, FileId } = location.state || {};
 
   const history = useNavigate(); // Initialize history
 
   // Function to fetch the QR code
-  const GetQRCode = async (url: string) => {
+  const GetQRCode = async (url: string, FileId : string) => {
     setLoading(true);
     setError(null);
     try {
@@ -28,7 +28,7 @@ const QrCodePage: React.FC = () => {
       const response = await axios.get<{ qrCode: string }>(
         `${API_URL}/files/generateQR`,
         {
-          params: { fileUrl: url },
+          params: { fileUrl: url,FileId : FileId },
           headers: {
             'Authorization': `Bearer ${authToken}`,
           },
@@ -48,7 +48,7 @@ const QrCodePage: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      await GetQRCode(fileURL);
+      await GetQRCode(fileURL,FileId);
     } catch (e) {
       setError('Failed to generate QR Code');
     }
@@ -57,7 +57,7 @@ const QrCodePage: React.FC = () => {
   // Fetch the QR code when the component mounts
   useEffect(() => {
     if (fileURL) {
-      GetQRCode(fileURL);
+      GetQRCode(fileURL,FileId);
     }
   }, [fileURL]);
 

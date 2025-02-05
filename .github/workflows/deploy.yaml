@@ -24,6 +24,8 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          build-args: |
+            "FILEPATH=${{ secrets.FILEPATH }}"
           tags: deepanshudks/quicklink:latest
 
       - name: Verify Pushed Image

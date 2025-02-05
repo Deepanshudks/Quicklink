@@ -289,7 +289,7 @@ const Dashboard = () => {
                         </a> */}
                         <button onClick={() => {
                           navigate("/qrcode", {
-                            state: { fileURL: file.fileURL }
+                            state: { fileURL: file.fileURL, FileId : file.id }
                           })
                         }} className="p-2 hover:bg-teal-50 rounded-full">
                           <QrCode className="h-4 w-4 text-teal-500" />

@@ -16,6 +16,9 @@ COPY backend ./backend
 
 WORKDIR /usr/src/app/backend
 
+ARG FILEPATH
+ENV FILEPATH=${FILEPATH}
+
 RUN npm rebuild bcrypt --build-from-source
 
 # RUN npm install -g prisma @prisma/client

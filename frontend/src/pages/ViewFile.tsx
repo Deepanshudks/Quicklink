@@ -9,7 +9,6 @@ const ViewFile = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Extract URL parameter from location.search (query string)
     const params = new URLSearchParams(location.search);
     const encodedFileUrl = params.get('url');
 

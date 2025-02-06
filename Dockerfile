@@ -1,9 +1,13 @@
 FROM node:20.12.0-slim
 
+# Install dependencies including Python and build tools
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     openssl \
-    libssl-dev && \
+    libssl-dev \
+    python3 \
+    python3-pip \
+    build-essential && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
@@ -19,10 +23,10 @@ WORKDIR /usr/src/app/backend
 ARG FILEPATH
 ENV FILEPATH=${FILEPATH}
 
+# Rebuild bcrypt
 RUN npm rebuild bcrypt --build-from-source
 
-# RUN npm install -g prisma @prisma/client
-
+# Generate Prisma Client
 RUN npx prisma generate --schema=src/prisma/schema.prisma
 
 RUN npm run build

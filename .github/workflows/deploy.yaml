@@ -24,6 +24,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          no-cache: true
           build-args: |
             "FILEPATH=${{ secrets.FILEPATH }}"
           tags: deepanshudks/quicklink:latest

@@ -32,7 +32,7 @@ RUN npm uninstall @prisma/client
 RUN npm install @prisma/client
 
 RUN npx prisma generate --schema=src/prisma/schema.prisma
-RUN npx prisma migrate deploy
+RUN npx prisma migrate deploy --schema=src/prisma/schema.prisma
 
 RUN npm run build
 

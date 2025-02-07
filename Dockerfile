@@ -30,7 +30,6 @@ RUN npm rebuild bcrypt --build-from-source
 RUN rm -rf node_modules/.prisma
 RUN npm uninstall @prisma/client
 RUN npm install @prisma/client
-RUN npx prisma generate
 
 RUN npx prisma generate --schema=src/prisma/schema.prisma
 

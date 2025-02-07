@@ -53,11 +53,11 @@ const s3Storage = multerS3({
       console.log("Generating file key...");
       const extension = path.extname(file.originalname)
       const filename = `uploads/${Date.now()}_${uuidv4()}${extension}`;
-      console.log("Generated Key:", filename);
+      // console.log("Generated Key:", filename);
 
       cb(null, filename)
     } catch (error) {
-      console.error("❌Error in key function:", error);
+      // console.error("❌Error in key function:", error);
       cb(error);
     }
   },
@@ -92,14 +92,14 @@ const router = Router();
 const multerMiddleware= (req: any,res:any,next:any)=>{
   upload.single('file')(req, res, function (err) {
     if (err) {
-      console.log("1")
-      console.log(err.message)
-      console.log(err)
+      // console.log("1")
+      // console.log(err.message)
+      // console.log(err)
       return res.status(400).json({ error: "File upload failed", details: err.message });
     }
     
     if (!req.file) {
-      console.log("2")
+      // console.log("2")
       return res.status(400).json({ error: "No file uploaded" });
     }
     req.filename = Filename;

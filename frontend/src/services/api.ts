@@ -9,7 +9,7 @@ export const getUserFiles = async () => {
   try {
     const response = await axios.get(`${API_URL}/files`, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('authToken')}`, // Assuming you have JWT token handling
+        Authorization: `${localStorage.getItem('authToken')}`, // Assuming you have JWT token handling
       },
     });
     return response.data.files;
@@ -29,7 +29,7 @@ export const deleteFile = async (id: number)=>{
     const response = await axios.delete(`${API_URL}/files/${id}`, {
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer ${authToken}`,
+        'Authorization': `${authToken}`,
       },
     })
     // console.log("done")
@@ -53,7 +53,7 @@ export const RenameFile = async (id :number,name : string) => {
   try{
     const response = await axios.put(`${API_URL}/files/rename/${id}`,{name}, {
       headers: {
-        'Authorization': `Bearer ${authToken}`,
+        'Authorization': `${authToken}`,
       },
     })
     if(response){
@@ -83,7 +83,7 @@ export const RenameFile = async (id :number,name : string) => {
         {
           params: { fileUrl: url },
           headers :{
-            'Authorization': `Bearer ${authToken}`,
+            'Authorization': `${authToken}`,
           } // Encode URL if necessary
         }
       );
@@ -111,7 +111,7 @@ export const uploadFile = async (file: File) => {
     const response = await axios.post(`${API_URL}/files/uploads`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer ${authToken}`,
+        'Authorization': `${authToken}`,
       },
     });
     return response.data; // Assuming the response is in the form of JSON
@@ -151,6 +151,11 @@ export const loginUser = async (username: string, password: string) => {
 
     if (response.data?.token) {
       localStorage.setItem("authToken", "Bearer " + response.data.token);
+      console.log("****************************")
+      console.log("****************************")
+      console.log(response.data.token)
+      console.log("****************************")
+      console.log("****************************")
       toast.success("Login successful")
       return response;
     } else {

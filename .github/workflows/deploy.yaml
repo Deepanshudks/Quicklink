@@ -60,6 +60,8 @@ jobs:
             EOF
             
             # Run the new container with environment variables
+            sudo docker run --rm --env-file ~/quicklink.env deepanshudks/quicklink:latest npx prisma migrate deploy
+
             sudo docker run -d --name quicklink \
               --env-file ~/quicklink.env \
               --restart always \

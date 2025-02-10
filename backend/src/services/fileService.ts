@@ -85,6 +85,7 @@ export const GenerateQr = async (req: Request, res: Response): Promise<any> => {
     // const EncodedURL = encodeURIComponent(`?url=${fileUrl}`) 
     // console.log(`${APP_URL}/${EncodedURL}`)
     const UrlPath = "?url=" + fileUrl
+    console.log(UrlPath)
     const qrCode = await QRCode.toDataURL(`${process.env.FILEPATH}${UrlPath}`);
 
     // console.log("QR Code generated:", qrCode);

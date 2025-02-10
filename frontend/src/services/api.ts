@@ -151,12 +151,12 @@ export const loginUser = async (username: string, password: string) => {
 
     if (response.data?.token) {
       localStorage.setItem("authToken", "Bearer " + response.data.token);
-      console.log("****************************")
-      console.log("****************************")
-      console.log(response.data.token)
-      console.log("****************************")
-      console.log("****************************")
-      toast.success("Login successful")
+      // console.log("****************************")
+      // console.log("****************************")
+      // console.log(response.data.token)
+      // console.log("****************************")
+      // console.log("****************************")
+      // toast.success("Login successful")
       return response;
     } else {
       console.log("Login failed. No token received.");

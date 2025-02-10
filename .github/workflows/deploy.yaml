@@ -31,7 +31,7 @@ jobs:
         #   tags: deepanshudks/quicklink:latest
 
       - name: Verify Pushed Image
-        run: docker pull --no-cache deepanshudks/quicklink:latest
+        run: docker pull deepanshudks/quicklink:latest
 
   deploy:
     needs: build-and-push

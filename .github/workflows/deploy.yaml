@@ -31,7 +31,7 @@ jobs:
         #   tags: deepanshudks/quicklink:latest
 
       - name: Verify Pushed Image
-        run: docker pull deepanshudks/quicklink:latest
+        run: docker pull --no-cache deepanshudks/quicklink:latest
 
   deploy:
     needs: build-and-push
@@ -44,10 +44,11 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            sudo docker pull deepanshudks/quicklink:latest
+            sudo docker pull --no-cache deepanshudks/quicklink:latest
             
             sudo docker stop quicklink || true
             sudo docker rm quicklink || true
+            sudo docker system prune -af
             
             # Create .env file with secrets on EC2
             cat <<EOF > ~/quicklink.env

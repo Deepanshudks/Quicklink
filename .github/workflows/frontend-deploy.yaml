@@ -36,6 +36,6 @@ jobs:
             
             sudo docker stop quicklinkreact || true
             sudo docker rm quicklinkreact || true
-            sudo docker pull deepanshudks/quicklinkreact:latest
+            sudo docker pull --no-cache deepanshudks/quicklinkreact:latest
             
             sudo docker run -d --name quicklinkreact --restart always -p 3000:80 deepanshudks/quicklinkreact:latest

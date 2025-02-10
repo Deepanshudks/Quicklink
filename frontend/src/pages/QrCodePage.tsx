@@ -30,7 +30,7 @@ const QrCodePage: React.FC = () => {
         {
           params: { fileUrl: url,FileId : FileId },
           headers: {
-            'Authorization': `Bearer ${authToken}`,
+            'Authorization': `${authToken}`,
           },
         }
       );

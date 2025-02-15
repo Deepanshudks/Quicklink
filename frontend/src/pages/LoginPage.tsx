@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import LoginForm from '../components/LoginForm'; // Assuming LoginForm is in 'components' folder
+import HomeNav from '../components/HomeNav';
 
 const LoginPage: React.FC = () => {
   const [error, setError] = useState('');
@@ -12,12 +13,16 @@ const LoginPage: React.FC = () => {
   };
 
   return (
+    <>
+    <div >
+    <HomeNav/>
+    </div>
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 to-teal-200"
-    >
+      className="min-h-screen flex flex-col items-center justify-center"
+      >
       <div className="bg-white p-8 rounded-xl shadow-lg w-full sm:w-96">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Welcome Back!</h2>
 
@@ -47,6 +52,8 @@ const LoginPage: React.FC = () => {
         </motion.p>
       </div>
     </motion.div>
+    
+    </>
   );
 };
 

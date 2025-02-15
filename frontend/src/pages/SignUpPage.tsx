@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { signUpUser } from '../services/api';
 import { motion } from 'framer-motion';
 import Loader from '../components/Loader';
+import HomeNav from '../components/HomeNav';
 
 const SignUpPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -34,6 +35,10 @@ const SignUpPage: React.FC = () => {
   };
 
   return (
+    <>
+      <div >
+    <HomeNav/>
+    </div>
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -130,6 +135,7 @@ const SignUpPage: React.FC = () => {
         </motion.p>
       </div>
     </motion.div>
+    </>
   );
 };
 

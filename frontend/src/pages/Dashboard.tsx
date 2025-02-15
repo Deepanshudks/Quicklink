@@ -107,7 +107,19 @@ const Dashboard = () => {
   });
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <>
+    {
+      (!localStorage.getItem("authToken"))?(<div className="w-screen p-4 h-screen text-right flex-col">
+        <div>
+        <button className="bg-teal-200 hover:bg-zinc-300 font-semibold cursor-pointer p-2 rounded mt-2" onClick={()=>{
+          navigate("/")
+        }}>{"< Go back"}</button>
+        </div>
+        <div className="flex text center">
+        <div className="text-red-400 font-bold w-screen text-center mt-8">Not Authorized</div>
+        </div>
+       
+        </div>):( <div className="min-h-screen bg-slate-50">
       {/* Top Navigation */}
       <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       {/* <div className="sticky top-0 z-10 bg-white border-b border-slate-200">
@@ -308,7 +320,9 @@ const Dashboard = () => {
           {/* <FileContent files={files} /> */}
         </div>
       </div>
-    </div>
+   </div>)
+       }
+    </>
   );
 };
 

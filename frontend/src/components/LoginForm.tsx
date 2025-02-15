@@ -10,7 +10,7 @@ interface LoginFormProps {
   setError: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess, setError }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isloading, setIsloading] = useState(false);
 
@@ -34,11 +34,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
 
       const res = await loginUser(value.username, value.password)
       if (res?.status == 200) {
-        
         onLoginSuccess()
         setIsloading(false)
       } else {
-        toast.error(res?.data.message || "Failed to login")
+        console.log(res)
+        setError(res || "Failed to login")
+        toast.error(res|| "Failed to login")
         setIsloading(false)
       }
     }

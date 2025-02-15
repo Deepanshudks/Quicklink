@@ -154,10 +154,11 @@ export const loginUser = async (username: string, password: string) => {
       localStorage.setItem("authToken", "Bearer " + response.data.token);
       return response;
     } else {
-      console.log("Login failed. No token received.");
+      return response.data.message
     }
   } catch (e) {
-    console.log("An error occurred while logging in: ", e);
+
+    return "Invalid Credentials"
   }
 };
 

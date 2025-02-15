@@ -24,9 +24,20 @@ WORKDIR /usr/share/nginx/html
 RUN rm -rf *
 
 COPY --from=build /app/dist .
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-RUN echo 'add_header Cache-Control "no-cache, no-store, must-revalidate";' >> /etc/nginx/conf.d/default.conf
-
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
+# RUN echo 'add_header Cache-Control "no-cache, no-store, must-revalidate";' >> /etc/nginx/conf.d/default.conf
+RUN echo 'server { \
+    listen 80; \
+    server_name _; \
+    location / { \
+        root /usr/share/nginx/html; \
+        index index.html; \
+        try_files $uri /index.html; \
+        add_header Cache-Control "no-cache, no-store, must-revalidate" always; \
+        add_header Pragma "no-cache"; \
+        add_header Expires 0; \
+    } \
+}' > /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 

@@ -46,9 +46,9 @@ jobs:
           script: |
             sudo docker pull deepanshudks/quicklink:latest
             
-            # sudo docker stop quicklink || true
-            # sudo docker rm quicklink || true
-            # sudo docker system prune -af
+            sudo docker stop quicklinkbackend || true
+            sudo docker rm quicklinkbackend || true
+            sudo docker system prune -af
             
             # Create .env file with secrets on EC2
             cat <<EOF > ~/quicklink.env

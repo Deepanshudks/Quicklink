@@ -25,17 +25,21 @@ ARG FILEPATH
 ENV FILEPATH=${FILEPATH}
 
 # Rebuild bcrypt
-RUN npm rebuild bcrypt --build-from-source
+# RUN npm rebuild bcrypt --build-from-source
 
 # Generate Prisma Client
+# RUN npm install prisma@6.3.1 @prisma/client@6.3.1
+
+# RUN rm -rf node_modules/.prisma
+# RUN npm uninstall @prisma/client
+# RUN npm install @prisma/client
+
+# # RUN npx prisma migrate deploy --schema=src/prisma/schema.prisma
+# RUN npx prisma generate --schema=src/prisma/schema.prisma
+
+# Install Prisma and generate client
 RUN npm install prisma@6.3.1 @prisma/client@6.3.1
-
-RUN rm -rf node_modules/.prisma
-RUN npm uninstall @prisma/client
-RUN npm install @prisma/client
-
-# RUN npx prisma migrate deploy --schema=src/prisma/schema.prisma
-RUN npx prisma generate --schema=src/prisma/schema.prisma
+RUN npx prisma generate --schema=../prisma/schema.prisma
 
 RUN npm run build
 

@@ -44,7 +44,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            sudo docker pull --no-cache deepanshudks/quicklink:latest
+            sudo docker pull deepanshudks/quicklink:latest
             
             sudo docker stop quicklink || true
             sudo docker rm quicklink || true

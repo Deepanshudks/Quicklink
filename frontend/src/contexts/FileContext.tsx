@@ -21,7 +21,7 @@ export const FileProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       const response = await axios.get('/api/files');
       setFiles(response.data.files);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 
@@ -35,7 +35,7 @@ export const FileProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       });
       fetchFiles();
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 

@@ -6,8 +6,8 @@ import { deleteFile } from "../services/api";
 const FileActions: React.FC<FileActionsProps> = ({setIsModalOpen,fetchFiles, id, setComponentId }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleRenameClick = () => {
-    setComponentId(id)
+  const handleRenameClick = async () => {
+    await setComponentId(id)
     // console.log(id)
     setIsModalOpen(true)
     setIsOpen(false); // Close the menu after selection
@@ -40,9 +40,8 @@ const FileActions: React.FC<FileActionsProps> = ({setIsModalOpen,fetchFiles, id,
           <button
             className="w-full text-left px-3 py-2 text-red-500 hover:bg-red-100"
             onClick={async () => {
-              console.log("Delete clicked");
+              // console.log("Delete clicked");
               await deleteFile(id)
-              
               await fetchFiles()
               setIsOpen(false);
             }}

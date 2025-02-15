@@ -37,7 +37,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess, setError }) => {
         onLoginSuccess()
         setIsloading(false)
       } else {
-        console.log(res)
+        // console.log(res)
         setError(res || "Failed to login")
         toast.error(res|| "Failed to login")
         setIsloading(false)

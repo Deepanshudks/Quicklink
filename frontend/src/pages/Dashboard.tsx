@@ -39,7 +39,8 @@ const Dashboard = () => {
     if (newName.trim()) {
       // console.log(newName)
       // console.log(id)
-     await RenameFile(id, newName); // Pass the new name to RenameFile
+     await RenameFile(id, newName);
+     await fetchFiles() // Pass the new name to RenameFile
       setIsModalOpen(false);
       setNewName("") // Close the modal after renaming
     }

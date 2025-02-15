@@ -19,7 +19,7 @@ const SignUpPage: React.FC = () => {
 
     try {
      const res =  await signUpUser(username, email, password);
-     console.log(res)
+    //  console.log(res) 
       if(res?.status == 201){
         navigate('/dashboard');
       }

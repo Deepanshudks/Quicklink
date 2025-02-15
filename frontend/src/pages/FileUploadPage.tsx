@@ -35,6 +35,7 @@ const FileUploadPage: React.FC = () => {
           </div>
         <h1 className="text-3xl font-semibold text-center text-gray-800 mb-8">
           Upload Your Files
+          <p className="text-red-400 text-sm">(Except pdf files)</p>
         </h1>
 
         <motion.div

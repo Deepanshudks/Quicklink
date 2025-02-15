@@ -70,6 +70,7 @@ const Dashboard = () => {
     if (type.includes('video')) return <Video className="h-10 w-10" />;
     if (type.includes('audio')) return <Music className="h-10 w-10" />;
     if (type.includes('pdf')) return <FileText className="h-10 w-10" />;
+    // if (type.includes('pdf')) return <FileText className="h-10 w-10" />;
     if (type.includes('doc') || type.includes('docx')) return <FileText className="h-10 w-10" />;
     return <File className="h-10 w-10" />;
   };

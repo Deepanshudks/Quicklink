@@ -59,7 +59,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onUpload }) => {
     setError(null);
 
     try {
-      console.log("FIles ",file)
+      // console.log("FIles ",file)
       const data = await uploadFile(file); // Call the API function from api.ts
       setUploadedFileData(data); 
       navigate("/dashboard")
@@ -95,7 +95,8 @@ const FileUpload: React.FC<FileUploadProps> = ({ onUpload }) => {
           type="file"
           className="hidden"
           onChange={handleFileChange}
-          accept="image/*,.pdf,.doc,.docx"
+          // accept="image/*,.pdf,.doc,.docx"
+          accept="image/*,.doc,.docx"
           id="file-upload"
         />
         <label htmlFor="file-upload" className="mt-3 text-teal-600 cursor-pointer text-sm">
@@ -171,6 +172,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onUpload }) => {
 
       {/* Uploaded File Data */}
       {uploadedFileData && !loading && (
+        
         <motion.div
           className="mt-6 w-full p-4 bg-gray-50 border rounded-lg shadow-sm"
           initial={{ opacity: 0, y: 10 }}

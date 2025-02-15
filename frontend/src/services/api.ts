@@ -150,13 +150,8 @@ export const loginUser = async (username: string, password: string) => {
     const response = await axios.post(`${API_URL}/auth/login`, { username, password });
 
     if (response.data?.token) {
+      localStorage.removeItem("authToken");
       localStorage.setItem("authToken", "Bearer " + response.data.token);
-      // console.log("****************************")
-      // console.log("****************************")
-      // console.log(response.data.token)
-      // console.log("****************************")
-      // console.log("****************************")
-      // toast.success("Login successful")
       return response;
     } else {
       console.log("Login failed. No token received.");
@@ -170,6 +165,7 @@ export const loginUser = async (username: string, password: string) => {
 export const signUpUser = async (username: string,email: string, password: string) => {
   try{
     const response = await axios.post(`${API_URL}/auth/signup`, {username, email, password });
+    localStorage.removeItem("authToken")
     localStorage.setItem("authToken","Bearer " + response.data.token)
     return response
   }catch(e){

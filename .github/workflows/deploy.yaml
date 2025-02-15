@@ -46,8 +46,8 @@ jobs:
           script: |
             sudo docker pull deepanshudks/quicklink:latest
             
-            sudo docker stop quicklinkbackend || true
-            sudo docker rm quicklinkbackend || true
+            sudo docker stop quicklink || true
+            sudo docker rm quicklink || true
             sudo docker system prune -af
             
             # Create .env file with secrets on EC2
@@ -62,7 +62,7 @@ jobs:
             EOF
             
             # Run the new container with environment variables
-            sudo docker run --rm --env-file ~/quicklink.env deepanshudks/quicklink:latest npx prisma migrate deploy
+            sudo docker run --rm --env-file ~/quicklink.env deepanshudks/quicklink:latest 
 
             sudo docker run -d --name quicklinkbackend \
               --env-file ~/quicklink.env \

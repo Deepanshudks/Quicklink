@@ -9,11 +9,11 @@
         "start": "node dist/app.js",
         "migrate": "npx prisma migrate dev",
         "seed": "npx prisma db seed",
-        "db:generate" : "cd backend/src/prisma/ && npx prisma generate --schema=src/prisma/schema.prisma && cd ../../..",
-        "backend" : "node dist/index.js"
+        "db:generate": "cd backend/src/prisma/ && npx prisma generate --schema=src/prisma/schema.prisma && cd ../../..",
+        "backend": "node dist/index.js"
     },
     "dependencies": {
-        "@aws-sdk/client-s3": "^3.740.0",
+        "@aws-sdk/client-s3": "^3.749.0",
         "@aws-sdk/s3-request-presigner": "^3.740.0",
         "@prisma/client": "^6.3.0",
         "@types/dotenv": "^6.1.1",

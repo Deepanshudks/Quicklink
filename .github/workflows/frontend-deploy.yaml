@@ -41,6 +41,6 @@ jobs:
             sudo docker rmi deepanshudks/quicklinkreact:latest || true 
 
 
-            sudo docker pull deepanshudks/quicklinkreact:latest 
+            sudo docker pull --no-cache deepanshudks/quicklinkreact:latest 
 
             sudo docker run -d --name quicklinkfrontend --restart always -p 3000:80 deepanshudks/quicklinkreact:latest

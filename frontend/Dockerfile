@@ -25,6 +25,8 @@ RUN rm -rf *
 
 COPY --from=build /app/dist .
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+RUN echo 'add_header Cache-Control "no-cache, no-store, must-revalidate";' >> /etc/nginx/conf.d/default.conf
+
 
 EXPOSE 80
 

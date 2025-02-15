@@ -64,7 +64,7 @@ jobs:
             # Run the new container with environment variables
             sudo docker run --rm --env-file ~/quicklink.env deepanshudks/quicklink:latest npx prisma migrate deploy
 
-            sudo docker run -d --name quicklink \
+            sudo docker run -d --name quicklinkbackend \
               --env-file ~/quicklink.env \
               --restart always \
               -p 5000:5000 deepanshudks/quicklink:latest

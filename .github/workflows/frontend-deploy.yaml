@@ -18,7 +18,7 @@ jobs:
       - name: Build & Push Docker Image
         run: |
           cd ./frontend
-          docker build --no-cache --build-arg VITE_API_URL=${{ secrets.VITE_API_URL }} -t deepanshudks/quicklinkreact .
+          docker build --no-cache --build-arg VITE_API_URL=${{ secrets.VITE_API_URL }} -t deepanshudks/quicklinkreact  .
       - name: Publish Image to docker hub
         run: docker push deepanshudks/quicklinkreact:latest
 
@@ -38,4 +38,4 @@ jobs:
             sudo docker rm quicklinkreact || true
             sudo docker pull --no-cache deepanshudks/quicklinkreact:latest
             
-            sudo docker run -d --name quicklinkreact --restart always -p 3000:80 deepanshudks/quicklinkreact:latest
+            sudo docker run -d --name quicklinkfrontend --restart always -p 3000:80 deepanshudks/quicklinkreact:latest

@@ -34,8 +34,15 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             
-            sudo docker stop quicklinkreact || true
-            sudo docker rm quicklinkreact || true
-            sudo docker pull --no-cache deepanshudks/quicklinkreact:latest
+            # sudo docker stop quicklinkreact || true
+            # sudo docker rm quicklinkreact || true
+            # sudo docker pull --no-cache deepanshudks/quicklinkreact:latest
             
+            # sudo docker run -d --name quicklinkfrontend --restart always -p 3000:80 deepanshudks/quicklinkreact:latest
+
+            sudo docker stop quicklinkfrontend || true
+            sudo docker rm quicklinkfrontend || true
+            sudo docker rmi deepanshudks/quicklinkreact:latest || true  
+            sudo docker pull deepanshudks/quicklinkreact:latest  
             sudo docker run -d --name quicklinkfrontend --restart always -p 3000:80 deepanshudks/quicklinkreact:latest
+            sudo docker exec quicklinkfrontend nginx -s reload || true  

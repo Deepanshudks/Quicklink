@@ -33,7 +33,12 @@ RUN echo 'server { \
         root /usr/share/nginx/html; \
         index index.html; \
         try_files $uri /index.html; \
-        add_header Cache-Control "no-cache, no-store, must-revalidate" always; \
+    } \
+    location /assets/ { \
+        add_header Cache-Control "public, max-age=31536000, immutable"; \
+    } \
+    location ~* \\.(html)$ { \
+        add_header Cache-Control "no-cache, no-store, must-revalidate"; \
         add_header Pragma "no-cache"; \
         add_header Expires 0; \
     } \

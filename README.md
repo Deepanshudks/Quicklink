@@ -20,28 +20,30 @@ cd quicklink
 ```
 
 ### Set Up the Backend
-```
+```sh
 cd backend
 npm install
 npx prisma generate
-npm run dev
+npm run build
+npm run backend
 ```
 ### Set Up the Frontend
-```
+```sh
 cd frontend
 npm install
 npm run dev
 ```
+---
 
-##Running Backend and Frontend Separately
+## **Running Backend and Frontend Separately**
 
 ###1️⃣ Build and Run the Backend
-```
+```sh
 docker build -t quicklink-backend -f Dockerfile.backend .
 docker run -d -p 5000:5000 --env-file backend/.env quicklink-backend
 ```
 ###2️⃣ Build and Run the Frontend
-```
+```sh
 docker build -t quicklink-frontend -f frontend/Dockerfile .
 docker run -d -p 80:80 --env-file frontend/.env quicklink-frontend
 ```

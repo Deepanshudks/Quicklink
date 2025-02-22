@@ -35,7 +35,7 @@ npm run dev
 ```
 ---
 
-## **Running Backend and Frontend Separately**
+## **Running Backend and Frontend Separately using docker**
 
 ###1️⃣ Build and Run the Backend
 ```sh

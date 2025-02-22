@@ -35,7 +35,7 @@ npm run dev
 ```
 ---
 
-## **Running Backend and Frontend Separately using docker**
+## **Running Backend and Frontend Separately using Docker**
 
 ### 1️⃣ Build and Run the Backend
 ```
@@ -43,7 +43,7 @@ docker build -t quicklink-backend -f Dockerfile.backend .
 docker run -d -p 5000:5000 --env-file backend/.env quicklink-backend
 ```
 ### 2️⃣ Build and Run the Frontend
-```sh
+```
 docker build -t quicklink-frontend -f frontend/Dockerfile .
 docker run -d -p 80:80 --env-file frontend/.env quicklink-frontend
 ```

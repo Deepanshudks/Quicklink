@@ -14,7 +14,7 @@ QuickLink is a **fast and secure file-sharing app** that lets users **upload fil
 ## **📦 Local Setup**  
 
 ### **1️⃣ Clone the Repository**  
-```sh
+``` sh
 git clone https://github.com/Deepanshudks/Quicklink.git
 cd quicklink
 ```
@@ -37,12 +37,12 @@ npm run dev
 
 ## **Running Backend and Frontend Separately using docker**
 
-###1️⃣ Build and Run the Backend
+### 1️⃣ Build and Run the Backend
 ```sh
 docker build -t quicklink-backend -f Dockerfile.backend .
 docker run -d -p 5000:5000 --env-file backend/.env quicklink-backend
 ```
-###2️⃣ Build and Run the Frontend
+### 2️⃣ Build and Run the Frontend
 ```sh
 docker build -t quicklink-frontend -f frontend/Dockerfile .
 docker run -d -p 80:80 --env-file frontend/.env quicklink-frontend

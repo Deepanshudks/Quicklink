@@ -19,7 +19,7 @@ git clone https://github.com/Deepanshudks/Quicklink.git
 cd quicklink
 ```
 
-###  2️⃣Set Up the Backend
+###  2️⃣ Set Up the Backend
 ```
 cd backend
 npm install
@@ -27,7 +27,7 @@ npx prisma generate
 npm run build
 npm run backend
 ```
-###  3️⃣Set Up the Frontend
+###  3️⃣ Set Up the Frontend
 ```
 cd frontend
 npm install

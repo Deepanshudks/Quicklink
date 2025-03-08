@@ -19,7 +19,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: "Build & Push Docker Image"
-        run: docker build --build-arg FILEPATH=${{ secrets.FILEPATH }} -t deepanshudks/quicklink:latest .
+        run: docker build --no-cache --build-arg FILEPATH=${{ secrets.FILEPATH }} -t deepanshudks/quicklink:latest .
         # uses: docker/build-push-action@v2
         # with: 
         #   context: .

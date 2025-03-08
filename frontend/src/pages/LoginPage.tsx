@@ -7,7 +7,6 @@ import HomeNav from '../components/HomeNav';
 const LoginPage: React.FC = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const [isGuest, setIsGuest] = useState(false)
 
   const handleLoginSuccess = () => {
     navigate('/dashboard'); 
@@ -37,22 +36,7 @@ const LoginPage: React.FC = () => {
             {error}
           </motion.p>
         )}
-        {
-          isGuest?(<LoginForm name="user" pass="12345" onLoginSuccess={handleLoginSuccess} setError={setError} />):(<LoginForm name="" pass="" onLoginSuccess={handleLoginSuccess} setError={setError} />)
-        }
-        
-        {/* <motion.p
-          className="mt-6 text-center cursor-pointer text-blue-300 text-sm"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          onClick={(e)=>{
-            setIsGuest(true)
-            navigate("/login")
-          }}
-        >
-          Login as Guest
-        </motion.p> */}
+        <LoginForm name="" pass="" onLoginSuccess={handleLoginSuccess} setError={setError} />
 
         <motion.p
           className="mt-6 text-center text-sm text-gray-600"

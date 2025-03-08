@@ -6,18 +6,20 @@ import toast from 'react-hot-toast';
 import Loader from './Loader';
 
 interface LoginFormProps {
-  onLoginSuccess: () => void;
-  setError: React.Dispatch<React.SetStateAction<string>>;
+  onLoginSuccess: () => void,
+  setError: React.Dispatch<React.SetStateAction<string>>,
+  name : string,
+  pass : string
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess, setError }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ name,pass, onLoginSuccess, setError }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isloading, setIsloading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
-      username: '',
-      password: '',
+      username: name,
+      password: pass,
     },
     validate: (values) => {
       const errors: { username?: string; password?: string } = {};
@@ -39,7 +41,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess, setError }) => {
       } else {
         // console.log(res)
         setError(res || "Failed to login")
-        toast.error(res|| "Failed to login")
+        toast.error(res || "Failed to login")
         setIsloading(false)
       }
     }
@@ -110,6 +112,21 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess, setError }) => {
         {formik.errors.username && formik.touched.username && (
           <div className="text-red-500 text-sm mb-2">Invalid credentials</div>
         )}
+                <motion.p
+                  className="mt-6 text-center hover:underline cursor-pointer text-blue-500 text-sm"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6 }}
+                  onClick={()=>{
+                    formik.values.username = "user";
+                    formik.setValues({
+                      username : "guest",
+                      password : "11111"
+                    })
+                  }}
+                >
+                  Login as Guest
+                </motion.p>
 
         <motion.button
           type="submit"

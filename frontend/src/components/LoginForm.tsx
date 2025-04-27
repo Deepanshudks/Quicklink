@@ -96,13 +96,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ name,pass, onLoginSuccess, setErr
             onBlur={formik.handleBlur}
             required
           />
-          <button
+         { (formik.values.username !== 'guest' && formik.values.password !== '11111') && <button
             type="button"
             className="absolute right-3 top-3 text-teal-500 py-6 focus:outline-none"
             onClick={() => setShowPassword((prev) => !prev)}
           >
             {showPassword ? 'Hide' : 'Show'}
-          </button>
+          </button>}
 
           {formik.touched.password && formik.errors.password && (
             <div className="text-red-500 text-sm mt-1">{formik.errors.password}</div>

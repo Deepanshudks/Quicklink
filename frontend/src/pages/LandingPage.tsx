@@ -1,12 +1,47 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const LandingPage: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to track if the menu is open
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [showButton, setShowButton] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen); // Toggle menu visibility
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowButton(true);
+    };
+
+    window.addEventListener("beforeinstallprompt", handler as EventListener);
+
+    return () => {
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handler as EventListener
+      );
+    };
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+
+    const choiceResult = await deferredPrompt.userChoice;
+    if (choiceResult.outcome === "accepted") {
+      console.log("✅ User accepted the PWA install");
+    } else {
+      console.log("❌ User dismissed the PWA install");
+    }
+
+    setDeferredPrompt(null);
+    setShowButton(false);
   };
 
   return (
@@ -46,36 +81,85 @@ const LandingPage: React.FC = () => {
                 Login
               </motion.button>
             </Link>
+            {showButton && (
+              <motion.button
+                onClick={handleInstallClick}
+                className="px-3 py-2 bg-transparent border-2 border-gray-800   text-gray-800 rounded-full"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.1 }}
+              >
+                Install app
+              </motion.button>
+            )}
           </div>
 
           {/* Mobile Hamburger Menu */}
           <div className="md:hidden">
             <button onClick={toggleMenu} className="text-gray-800">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-8 h-8">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="w-8 h-8"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
         <div
-          className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute top-0 left-0 w-full bg-black bg-opacity-50 py-4 px-8 z-10`}
+          className={`md:hidden ${
+            isMenuOpen ? "block" : "hidden"
+          } absolute top-0 left-0 w-full bg-black bg-opacity-50 py-4 px-8 z-10`}
         >
           <div className="flex justify-end">
             <button onClick={toggleMenu} className="text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-8 h-8">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="w-8 h-8"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
           <div className="flex flex-col items-center mt-4">
-            <Link to="/signup" onClick={toggleMenu} className="py-2 px-4 text-white hover:bg-gray-700 rounded">
+            <Link
+              to="/signup"
+              onClick={toggleMenu}
+              className="py-2 px-4 text-white hover:bg-gray-700 rounded"
+            >
               Sign Up
             </Link>
-            <Link to="/login" onClick={toggleMenu} className="py-2 px-4 text-white hover:bg-gray-700 rounded mt-2">
+            <Link
+              to="/login"
+              onClick={toggleMenu}
+              className="py-2 px-4 text-white hover:bg-gray-700 rounded mt-2"
+            >
               Login
             </Link>
+            {showButton && (
+              <button
+                onClick={handleInstallClick}
+                className="py-2 px-4 text-white hover:bg-gray-700 rounded mt-2"
+              >
+                Install App
+              </button>
+            )}
           </div>
         </div>
       </motion.nav>
@@ -91,10 +175,10 @@ const LandingPage: React.FC = () => {
           className="max-w-xl space-y-8"
           initial={{ y: -50 }}
           animate={{ y: 0 }}
-          transition={{ duration: 1, type: 'spring', stiffness: 100 }}
+          transition={{ duration: 1, type: "spring", stiffness: 100 }}
         >
           <motion.h1
-            className="text-3xl sm:text-4xl sm:text-5xl mt-[8rem] sm:mt-0lg:text-6xl font-bold tracking-wide"
+            className="text-3xl  sm:text-5xl mt-[8rem] sm:mt-0lg:text-6xl font-bold tracking-wide"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
@@ -107,7 +191,8 @@ const LandingPage: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
           >
-            A fast, secure way to upload, store, and share your files. Get started now!
+            A fast, secure way to upload, store, and share your files. Get
+            started now!
           </motion.p>
           <Link to="/signup">
             <motion.button
@@ -215,7 +300,9 @@ const LandingPage: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 1 }}
           >
-            <p className="text-lg italic">"QuickLink is the easiest and most secure way to share files."</p>
+            <p className="text-lg italic">
+              "QuickLink is the easiest and most secure way to share files."
+            </p>
             <p className="mt-4 font-semibold">Kuldeep, Developer</p>
           </motion.div>
         </div>

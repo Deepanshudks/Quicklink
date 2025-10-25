@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 const LandingPage: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [, setDeferredPrompt] = useState<any>(null);
-  const [, setShowButton] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [showButton, setShowButton] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -28,21 +28,21 @@ const LandingPage: React.FC = () => {
     };
   }, []);
 
-  // const handleInstallClick = async () => {
-  //   if (!deferredPrompt) return;
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
 
-  //   deferredPrompt.prompt();
+    deferredPrompt.prompt();
 
-  //   const choiceResult = await deferredPrompt.userChoice;
-  //   if (choiceResult.outcome === "accepted") {
-  //     console.log("✅ User accepted the PWA install");
-  //   } else {
-  //     console.log("❌ User dismissed the PWA install");
-  //   }
+    const choiceResult = await deferredPrompt.userChoice;
+    if (choiceResult.outcome === "accepted") {
+      console.log("✅ User accepted the PWA install");
+    } else {
+      console.log("❌ User dismissed the PWA install");
+    }
 
-  //   setDeferredPrompt(null);
-  //   setShowButton(false);
-  // };
+    setDeferredPrompt(null);
+    setShowButton(false);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-teal-200 via-sky-300 to-indigo-200">
@@ -81,7 +81,7 @@ const LandingPage: React.FC = () => {
                 Login
               </motion.button>
             </Link>
-            {/* {showButton && (
+            {showButton && (
               <motion.button
                 onClick={handleInstallClick}
                 className="px-3 py-2 bg-transparent border-2 border-gray-800   text-gray-800 rounded-full"
@@ -90,7 +90,7 @@ const LandingPage: React.FC = () => {
               >
                 Install app
               </motion.button>
-            )} */}
+            )}
           </div>
 
           {/* Mobile Hamburger Menu */}
@@ -114,6 +114,7 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
 
+        {/* Mobile Menu */}
         <div
           className={`md:hidden ${
             isMenuOpen ? "block" : "hidden"
@@ -152,14 +153,14 @@ const LandingPage: React.FC = () => {
             >
               Login
             </Link>
-            {/* {showButton && (
+            {showButton && (
               <button
                 onClick={handleInstallClick}
                 className="py-2 px-4 text-white hover:bg-gray-700 rounded mt-2"
               >
                 Install App
               </button>
-            )} */}
+            )}
           </div>
         </div>
       </motion.nav>
@@ -178,7 +179,7 @@ const LandingPage: React.FC = () => {
           transition={{ duration: 1, type: "spring", stiffness: 100 }}
         >
           <motion.h1
-            className="text-3xl  sm:text-5xl mt-[8rem] sm:mt-0lg:text-6xl font-bold tracking-wide"
+            className="text-3xl sm:text-4xl mt-[8rem] sm:mt-0lg:text-6xl font-bold tracking-wide"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5 }}

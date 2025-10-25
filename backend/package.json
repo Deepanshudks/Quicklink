@@ -5,7 +5,7 @@
   "main": "app.ts",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpileOnly src/app.ts",
-    "build": "npm install && cd src && npx prisma generate && cd ..  && npx tsc -b",
+    "build": "npm ci && cd src && npx prisma generate && cd .. && npx tsc -b",
     "start": "node dist/index.js",
     "migrate": "npx prisma migrate dev",
     "seed": "npx prisma db seed",

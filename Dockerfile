@@ -1,6 +1,5 @@
 FROM node:20.12.0-slim
 
-# Install dependencies including Python and build tools
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     openssl \
@@ -24,10 +23,8 @@ WORKDIR /usr/src/app/backend
 ARG FILEPATH
 ENV FILEPATH=${FILEPATH}
 
-# Rebuild bcrypt
 # RUN npm rebuild bcrypt --build-from-source
 
-# Generate Prisma Client
 # RUN npm install prisma@6.3.1 @prisma/client@6.3.1
 
 # RUN rm -rf node_modules/.prisma
@@ -37,7 +34,6 @@ ENV FILEPATH=${FILEPATH}
 # # RUN npx prisma migrate deploy --schema=src/prisma/schema.prisma
 # RUN npx prisma generate --schema=src/prisma/schema.prisma
 
-# Install Prisma and generate client
 RUN npm install prisma@6.3.1 @prisma/client@6.3.1
 RUN npx prisma generate --schema=./prisma/schema.prisma
 

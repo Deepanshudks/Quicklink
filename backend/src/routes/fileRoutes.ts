@@ -1,19 +1,23 @@
-import { Router } from 'express';
-import { authenticate } from '../middleware/authMiddleware';
-import { uploadFile, deleteFile, getUserFiles } from '../controllers/fileController';
-import { S3Client } from '@aws-sdk/client-s3';
-import multer from 'multer';
-import multerS3 from 'multer-s3';
-import { v4 as uuidv4 } from 'uuid';
-import dotenv from 'dotenv';
-import { downloadFile, GenerateQr, RenameFile } from '../services/fileService';
-import path from 'path';
+import { Router } from "express";
+import { authenticate } from "../middleware/authMiddleware";
+import {
+  uploadFile,
+  deleteFile,
+  getUserFiles,
+} from "../controllers/fileController";
+import { S3Client } from "@aws-sdk/client-s3";
+import multer from "multer";
+import multerS3 from "multer-s3";
+import { v4 as uuidv4 } from "uuid";
+import dotenv from "dotenv";
+import { downloadFile, GenerateQr, RenameFile } from "../services/fileService";
+import path from "path";
 
 // const isProduction = process.env.NODE_ENV === 'production';
- 
-dotenv.config()
 
-const Filename = uuidv4()
+dotenv.config();
+
+const Filename = uuidv4();
 // console.log(name)
 
 // AWS S3 Configuration (Only in Production)
@@ -51,18 +55,17 @@ const s3Storage = multerS3({
       if (!file) throw new Error("File object is undefined in key");
 
       console.log("Generating file key...");
-      const extension = path.extname(file.originalname)
+      const extension = path.extname(file.originalname);
       const filename = `uploads/${Date.now()}_${uuidv4()}${extension}`;
       // console.log("Generated Key:", filename);
 
-      cb(null, filename)
+      cb(null, filename);
     } catch (error) {
       // console.error("❌Error in key function:", error);
       cb(error);
     }
   },
 });
-
 
 // // Set up file storage for local host
 
@@ -81,43 +84,47 @@ const s3Storage = multerS3({
 // });
 
 const upload = multer({
-   storage : s3Storage,
-   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
-  });
-
-
+  storage: s3Storage,
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
+});
 
 const router = Router();
 
-const multerMiddleware= (req: any,res:any,next:any)=>{
-  upload.single('file')(req, res, function (err) {
+const multerMiddleware = (req: any, res: any, next: any) => {
+  upload.single("file")(req, res, function (err) {
     if (err) {
       // console.log("1")
       // console.log(err.message)
       // console.log(err)
-      return res.status(400).json({ error: "File upload failed", details: err.message });
+      return res
+        .status(400)
+        .json({ error: "File upload failed", details: err.message });
     }
-    
+
     if (!req.file) {
       // console.log("2")
       return res.status(400).json({ error: "No file uploaded" });
     }
     req.filename = Filename;
-    next()
+    next();
   });
-}
-
+};
 
 // Routes
-router.get("/",authenticate as any,getUserFiles)
-router.post('/uploads', authenticate as any, multerMiddleware, uploadFile as any);
+router.get("/", authenticate as any, getUserFiles);
+router.post(
+  "/uploads",
+  authenticate as any,
+  multerMiddleware,
+  uploadFile as any
+);
 // router.post('/uploads', authenticate as any, upload.single('file')(req,res,function), uploadFile as any);
-// @ts-ignore 
-router.get("/generateQR",authenticate as any,GenerateQr)
-// @ts-ignore 
-router.put("/rename/:id",authenticate,RenameFile)
+// @ts-ignore
+router.get("/generateQR", authenticate as any, GenerateQr);
+// @ts-ignore
+router.put("/rename/:id", authenticate, RenameFile);
 // router.get('/:id', getFile as any);
-router.delete('/:id',authenticate, deleteFile as any);
-router.get('/download/:id', downloadFile as any);
+router.delete("/:id", authenticate, deleteFile as any);
+router.get("/download/:id", downloadFile as any);
 
 export default router;

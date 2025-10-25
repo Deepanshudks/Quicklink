@@ -5,12 +5,12 @@
   "main": "app.ts",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpileOnly src/app.ts",
-    "build": "tsc -b",
+    "build": "npm install && cd src && npx prisma generate && cd ..  && npx tsc -b",
     "start": "node dist/index.js",
     "migrate": "npx prisma migrate dev",
     "seed": "npx prisma db seed",
     "db:generate": "cd backend/src/prisma/ && npx prisma generate --schema=src/prisma/schema.prisma && cd ../../..",
-    "backend": "cd src && npx prisma generate && cd .. && tsc -b && node dist/index.js"
+    "backend": "node dist/index.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.749.0",
@@ -40,6 +40,6 @@
     "@types/qrcode": "^1.5.6",
     "prisma": "^6.3.0",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.9.3"
   }
 }

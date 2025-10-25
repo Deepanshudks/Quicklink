@@ -10,7 +10,7 @@
     "migrate": "npx prisma migrate dev",
     "seed": "npx prisma db seed",
     "db:generate": "cd backend/src/prisma/ && npx prisma generate --schema=src/prisma/schema.prisma && cd ../../..",
-    "backend": "tsc -b && node dist/index.js"
+    "backend": "cd src && npx prisma generate && cd .. && tsc -b && node dist/index.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.749.0",
